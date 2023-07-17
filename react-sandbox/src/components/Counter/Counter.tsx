@@ -15,7 +15,11 @@ import {
   CounterWrapper,
 } from "./styles";
 
-export const Counter = () => {
+export const Counter = ({
+  children,
+}: {
+  children?: (count: number) => JSX.Element;
+} & Record<string, unknown>) => {
   const { count, dispatch } = useCountState(0);
   const handleClickCount = (type: CountTypes) => (): void => {
     switch (type) {
@@ -45,10 +49,13 @@ export const Counter = () => {
       }
     }
   };
+
   return (
     <CounterWrapper>
       <div>
-        <CounterTitle>Current count state is: {count}</CounterTitle>
+        <CounterTitle>
+          {children ? children(count) : `Current count state is: ${count}`}
+        </CounterTitle>
         <CounterButtonGroup>
           <CounterButton type="button" onClick={handleClickCount("increment")}>
             increment
