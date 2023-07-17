@@ -8,7 +8,12 @@ import {
   decrementSome,
 } from "./hooks";
 
-import { CounterWrapper } from "./styles";
+import {
+  CounterButton,
+  CounterButtonGroup,
+  CounterTitle,
+  CounterWrapper,
+} from "./styles";
 
 export const Counter = () => {
   const { count, dispatch } = useCountState(0);
@@ -43,22 +48,30 @@ export const Counter = () => {
   return (
     <CounterWrapper>
       <div>
-        <p>Current count state is: {count}</p>
-        <button type="button" onClick={handleClickCount("increment")}>
-          increment
-        </button>
-        <button type="button" onClick={handleClickCount("decrement")}>
-          decrement
-        </button>
-        <button type="button" onClick={handleClickCount("reset")}>
-          reset
-        </button>
-        <button type="button" onClick={handleClickCount("incrementSome")}>
-          incrementSome
-        </button>
-        <button type="button" onClick={handleClickCount("decrementSome")}>
-          decrementSome
-        </button>
+        <CounterTitle>Current count state is: {count}</CounterTitle>
+        <CounterButtonGroup>
+          <CounterButton type="button" onClick={handleClickCount("increment")}>
+            increment
+          </CounterButton>
+          <CounterButton type="button" onClick={handleClickCount("decrement")}>
+            decrement
+          </CounterButton>
+          <CounterButton type="button" onClick={handleClickCount("reset")}>
+            reset
+          </CounterButton>
+          <CounterButton
+            type="button"
+            onClick={handleClickCount("incrementSome")}
+          >
+            incrementSome
+          </CounterButton>
+          <CounterButton
+            type="button"
+            onClick={handleClickCount("decrementSome")}
+          >
+            decrementSome
+          </CounterButton>
+        </CounterButtonGroup>
       </div>
     </CounterWrapper>
   );
